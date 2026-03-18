@@ -60,7 +60,7 @@ def load_profiles():
 
 
 def format_profile(p):
-    return f"{p['nombre']}  —  {p['usuario']}@{p['host']}:{p['puerto']}"
+    return f"{p['name']}  —  {p['user']}@{p['host']}:{p['port']}"
 
 
 def pick_profile(profiles):

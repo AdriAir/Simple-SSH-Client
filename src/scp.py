@@ -5,7 +5,7 @@ from profiles_menu import load_profiles, pick_profile
 
 
 def scp_transfer(profile, origin, dest):
-    user_host = f"{profile['usuario']}@{profile['host']}"
+    user_host = f"{profile['user']}@{profile['host']}"
     if ":" not in origin and ":" not in dest:
         dest = f"{user_host}:{dest}"
     else:
@@ -14,7 +14,10 @@ def scp_transfer(profile, origin, dest):
         if dest.startswith(":"):
             dest = f"{user_host}{dest}"
 
-    cmd = ["scp", "-P", str(profile["puerto"]), origin, dest]
+    cmd = ["scp", "-P", str(profile["port"])]
+    if profile.get("private_key"):
+        cmd += ["-i", profile["private_key"]]
+    cmd += [origin, dest]
     print(f"  > {' '.join(cmd)}\n")
     subprocess.run(cmd)
 

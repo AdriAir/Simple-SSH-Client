@@ -30,15 +30,16 @@ Los perfiles se definen manualmente en `src/profiles/profiles.json`:
 ```json
 [
     {
-        "nombre": "Mi Servidor",
+        "name": "Mi Servidor",
         "host": "192.168.1.100",
-        "usuario": "root",
-        "puerto": 22
+        "user": "root",
+        "port": 22,
+        "private_key": "/ruta/a/mi/clave_privada"
     }
 ]
 ```
 
-Cada perfil tiene: `nombre`, `host`, `usuario` y `puerto`.
+Cada perfil tiene: `name`, `host`, `user` y `port`. Opcionalmente se puede indicar `private_key` con la ruta absoluta a la **clave privada** SSH (por ejemplo `~/.ssh/id_rsa` o `~/.ssh/id_ed25519`); si se omite o se deja vacío, se usará la clave por defecto del sistema. **No indicar la clave pública** (`.pub`), sino la privada.
 
 > Este archivo está en `.gitignore` ya que contiene datos de conexión personales.
 

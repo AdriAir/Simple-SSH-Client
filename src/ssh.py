@@ -5,8 +5,10 @@ from profiles_menu import load_profiles, pick_profile
 
 
 def ssh_connect(profile):
-    cmd = ["ssh", "-p", str(profile["puerto"]),
-           f"{profile['usuario']}@{profile['host']}"]
+    cmd = ["ssh", "-p", str(profile["port"])]
+    if profile.get("private_key"):
+        cmd += ["-i", profile["private_key"]]
+    cmd.append(f"{profile['user']}@{profile['host']}")
     print(f"  > {' '.join(cmd)}\n")
     subprocess.run(cmd)
 
